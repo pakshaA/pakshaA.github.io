@@ -1,4 +1,5 @@
 var output = document.querySelector('output')
+var result = 0
 
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', function () {
@@ -13,20 +14,41 @@ document.addEventListener('keydown', event => {
 function calc(value) {
     if (value.match(/=|Enter/)) {
         try {
-            output.textContent = countResult(output.textContent)
+            parsing(output.textContent)
+            output.textContent = result
         } catch(e) {
             console.log(e)
+            alert(e)
         }
-    } else if (value.match(/C|c|с/)) {
+    } else if (value === "c" | value === "с" | value === "C") {
         output.textContent = ''
-    } else if (value.match(/CE|Backspace/)) {
-        output.textContent = output.textContent.substring(0, output.textContent.length - 1)
     } else {
-        output.textContent += value
-    }
+            output.textContent += value
+        }
 }
 
-function countResult(expr) {
-    var func = new Function('return ' + expr)
-    return func()
+function parsing(expr) {
+    var item = ''
+    arr = []
+    for (var i = 0; i < expr.length; i++) {
+        if (expr[i] === '+' | expr[i] === '-' | expr[i] === '/' | expr[i] === '*') {
+            if (item != '') arr.push(item) 
+            arr.push(expr[i])
+            item = ''
+        } else {
+            item += expr[i]
+        }
+    }
+    if (item != '') arr.push(item)
+    calculating(arr)
+}
+
+function calculating(arr) {
+    if (arr[1] == '+') result = Number(arr[0]) + Number(arr[2])
+    else if (arr[1] == '-') result = Number(arr[0]) - Number(arr[2])
+    else if (arr[1] == '*') result = Number(arr[0]) * Number(arr[2])
+    else if (arr[1] == '/') {
+        if (arr[2] == 0) result = 'Деление на 0'
+        else result = Number(arr[0]) / Number(arr[2])
+    }
 }
