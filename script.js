@@ -40,10 +40,10 @@ function parsing(expr) {
         }
     }
     if (item != '') arr.push(item)
-    calculating(arr)
+    getResult(arr)
 }
 
-function calculating(arr) {
+function getResult(arr) {
     if (arr[1] == '+') result = Number(arr[0]) + Number(arr[2])
     else if (arr[1] == '-') result = Number(arr[0]) - Number(arr[2])
     else if (arr[1] == '*') result = Number(arr[0]) * Number(arr[2])
