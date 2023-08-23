@@ -84,8 +84,6 @@ function checkBrackts (arr) {
             closedBrackers.push(i)
         }
     }
-    console.log(openedBrackers)
-    console.log(closedBrackers)
     if (openedBrackers.length != closedBrackers.length) {
         alert('Закрыты не все скобки.')
     } else if (openedBrackers.length != 0) {
@@ -99,7 +97,7 @@ function checkBrackts (arr) {
             inBrackesArr.pop()
             inBrackesArr.shift()
             inBrackesArr =  calcInBrackets(inBrackesArr)
-            arr.splice(open, close - open + 1, inBrackesArr[0])
+            arr.splice(open, close - open + 1, inBrackesArr)
             inBrackesArr = []
         }
     }
