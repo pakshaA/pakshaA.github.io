@@ -95,24 +95,22 @@ function checkBrackts(arr) {
     } else if (arr[i] === ')') {
       closedBrackers.push(i);
     }
-  }
-  console.log(openedBrackers);
-  console.log(closedBrackers);
-  if (openedBrackers.length !== closedBrackers.length) {
-    alert('Закрыты не все скобки.');
-  } else if (openedBrackers.length != 0) {
-    while (openedBrackers.length != 0) {
-      let open = openedBrackers.pop();
-      let close = closedBrackers.pop();
-      let inBrackesArr = [];
-      for (let i = 0; i < close - open + 1; i++) {
-        inBrackesArr[i] = arr[open + i];
-      }
-      inBrackesArr.pop();
-      inBrackesArr.shift();
-      inBrackesArr = calcInBrackets(inBrackesArr);
-      arr.splice(open, close - open + 1, inBrackesArr[0]);
-      inBrackesArr = [];
+    if (openedBrackers.length != closedBrackers.length) {
+        alert('Закрыты не все скобки.')
+    } else if (openedBrackers.length != 0) {
+        while (openedBrackers.length != 0) {
+            let open = openedBrackers.pop()
+            let close = closedBrackers.pop()
+            let inBrackesArr = []
+            for (let i = 0; i < (close-open+1); i++) {
+                inBrackesArr[i] = arr[open+i]
+            }
+            inBrackesArr.pop()
+            inBrackesArr.shift()
+            inBrackesArr =  calcInBrackets(inBrackesArr)
+            arr.splice(open, close - open + 1, inBrackesArr)
+            inBrackesArr = []
+        }
     }
   }
   calcResult(arr);
