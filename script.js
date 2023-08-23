@@ -83,6 +83,7 @@ function parsing(expr) {
     }
   }
   if (item !== '') arr.push(item);
+  console.log(arr)
   checkBrackts(arr);
 }
 
@@ -94,6 +95,7 @@ function checkBrackts(arr) {
       openedBrackers.push(i);
     } else if (arr[i] === ')') {
       closedBrackers.push(i);
+        }
     }
     if (openedBrackers.length != closedBrackers.length) {
         alert('Закрыты не все скобки.')
@@ -112,9 +114,9 @@ function checkBrackts(arr) {
             inBrackesArr = []
         }
     }
-  }
   calcResult(arr);
-}
+  }
+
 
 function calcInBrackets(inBrackes) {
   let resultInBrackers;
